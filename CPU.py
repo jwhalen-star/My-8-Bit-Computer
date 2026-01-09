@@ -29,3 +29,7 @@ class CPU:
 
         # Execute
         self.execute()
+
+    def run(self, steps):
+        for _ in range(int(steps)):
+            self.step()
