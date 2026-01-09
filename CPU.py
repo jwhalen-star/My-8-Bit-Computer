@@ -18,7 +18,7 @@ class CPU:
 
     def execute(self):
         if self.IR == self.OP_NOP_IMP:
-            pass
+            pass    # Do nothing
 
     def step(self):
         # Fetch
