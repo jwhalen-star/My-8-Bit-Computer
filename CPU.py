@@ -8,6 +8,14 @@ class CPU:
         self.MDR = 0
         self.IR  = 0
 
+    def trace(self):
+        print(
+            f"PC={self.PC:04X} "
+            f"IR={self.IR:02X} "
+            f"MAR={self.MAR:04X} "
+            f"MDR={self.MDR:02X}"
+        )
+
     def execute(self):
         if self.IR == self.OP_NOP_IMP:
             pass
