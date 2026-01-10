@@ -1,5 +1,6 @@
 class CPU:
     OP_NOP_IMP = 0x00
+    OP_HLT_IMP = 0x01
 
     def __init__(self, mem):
         self.mem = mem
@@ -30,6 +31,10 @@ class CPU:
         # Execute
         self.execute()
 
-    def run(self, steps):
-        for _ in range(int(steps)):
-            self.step()
+    def run(self, steps=None):
+        if steps is None:
+            while True:
+                self.step()
+        else:
+            for _ in range(int(steps)):
+                self.step()
