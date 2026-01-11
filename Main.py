@@ -2,30 +2,28 @@
 from CPU import CPU
 from Memory import Memory
 
-
 def main():
     # ---------------- Initialize machine ----------------
     mem = Memory()
     cpu = CPU(mem)
 
-    # ---------------- Load minimal program ----------------
+    # ---------------- Load minimal implied-mode program ----------------
     # Program:
+    #   NOP
+    #   NOP
     #   NOP
     #   HLT
     program = bytes([
+        CPU.OP_NOP_IMP,
+        CPU.OP_NOP_IMP,
         CPU.OP_NOP_IMP,
         CPU.OP_HLT_IMP
     ])
 
     mem.load_rom(program, start_address=0xF000)
 
-    # ---------------- Manual clocking + trace ----------------
-    cpu.step()
-    cpu.trace()   # After NOP
-
-    cpu.step()
-    cpu.trace()   # After HLT
-
+    # ---------------- Run multiple steps with trace ----------------
+    cpu.run(steps=10, trace=True)   # Stops automatically when HLT executes
 
 if __name__ == "__main__":
     main()
