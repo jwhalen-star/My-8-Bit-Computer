@@ -60,12 +60,19 @@ class CPU:
         # Execute
         self.execute()
 
-    def run(self, steps=None):
+    def run(self, steps=None, trace=False):
         if steps is None:
+            # Run until the CPU halts
             while not self.halted:
                 self.step()
+                if trace:
+                    self.trace()
         else:
+            # Run a fixed number of instruction steps
             for _ in range(int(steps)):
                 if self.halted:
                     break
                 self.step()
+                if trace:
+                    self.trace()
+
