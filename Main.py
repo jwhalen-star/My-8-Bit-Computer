@@ -23,7 +23,8 @@ def main():
     mem.load_rom(program, start_address=0xF000)
 
     # ---------------- Run multiple steps with trace ----------------
-    cpu.run(steps=10, trace=True)   # Stops automatically when HLT executes
+    cpu.trace_enabled = True
+    cpu.run(steps=10)   # Stops automatically when HLT executes
 
 if __name__ == "__main__":
     main()
